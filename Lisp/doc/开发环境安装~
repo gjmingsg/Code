@@ -1,7 +1,0 @@
-sudo apt-get install sbcl
-sudo apt-get install emacs
-sudo apt-get install common-lisp-controller slime
-启动emacs后输入Alt + x slime
-
-
-
