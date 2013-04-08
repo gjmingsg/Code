@@ -1,0 +1,2 @@
+c-x c-f find-file 打开文件
+c-x c-v find-alternate-file 
