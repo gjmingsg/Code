@@ -1,0 +1,410 @@
+
+|all sum item temp|.
+all := (333 * 334 / 2 * 3 )+ (199 * 200 / 2 * 5).
+sum := 0.
+item :=1.
+1 to: 333 do: [:x|
+	x \\ 5 = 0 ifFalse:[item := 3 * x.
+
+	1 to: 5 do:  [:y|
+		temp :=  (5 raisedTo: y) * item.	
+		temp<1000 ifTrue:[
+			sum := sum + temp.
+			Transcript show: item printString.
+			Transcript show: ' * '.
+			Transcript show:  (5 raisedTo: y) printString.
+			Transcript show: ' = '.
+			Transcript show:  temp printString; cr.
+			].
+		].
+	].		
+].
+Transcript show:  (all-sum) printString; cr.
+
+
+
+|max temp item|.
+max:=0.
+item := 0.
+temp:=0.
+999 to:  100 by: -1 do:[:x|
+	999 to: 100 by:-1 do:[:y|
+		item:=(x*y).
+		temp := item asString reverse asInteger.
+		temp=item ifTrue:[
+			max < temp ifTrue:[max:=temp].
+		].			
+	].	
+].
+Transcript show:  max printString; cr.
+
+|sum|
+sum := 0.
+1 to: 100 do: [:x|
+	sum := sum + (x *x)
+	
+	].
+Transcript show:  sum printString; cr.
+
+|sum|
+sum := 0.
+1 to: 100 do: [:x|
+	sum := sum + x
+	
+	].
+Transcript show:  (sum*sum) printString; cr.
+
+
+25502500 - 338350 25164150
+
+
+"Problem 16"
+|x temp sum|.
+x := 100 factorial.
+Transcript show:  x printString; cr.
+temp :=x.
+sum := 0.
+[temp > 0] whileTrue: [
+
+	sum := sum + (temp \\ 10).
+
+	temp := temp // 10.	
+		
+].
+Transcript show:  sum printString; cr.
+
+
+
+|sum|.
+sum:=0.
+1 to: 2000000 do: [:x|
+	
+	x isPrime ifTrue:[sum := sum + x.Transcript show:  x printString; cr.]
+	
+	] .
+Transcript show:  sum printString; cr.
+
+
+
+|index item i pArray max|.
+index := 2.
+i := 1.
+item := 4.
+pArray := Array new: 100000.
+pArray at: 1 put: 2.
+pArray at: 2 put: 3.
+max := 600851475143 sqrtFloor.
+[(pArray at: index) < max] whileTrue:[
+	item \\ (pArray at: i)=0 ifTrue:[
+		item := item + 1.
+		i := 1.	
+
+	]ifFalse:[
+		i := i + 1.
+
+	].	
+	i>index ifTrue:[
+		
+		index := index+1.
+		pArray at: index put:item.
+		item := item + 1.	
+		i := 1.	
+
+	].
+].
+max:=2.
+1 to: index do:[:x|
+	600851475143 \\ (pArray at: x) = 0 ifTrue: [
+		max<(pArray at: x) ifTrue: [max:=(pArray at: x).].		
+	].
+].
+
+
+Transcript show:  (pArray at: index)  printString; cr. 
+Transcript show:  max  printString; cr. 
+
+|str  p max|.
+str :='7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450'.
+p:=1.
+max:=1.
+1 to: 996 do:[:x|
+	
+	p:= ((str at:x) digitValue) * ((str at:(x+1)) digitValue) * ((str at:(x+2)) digitValue) * ((str at:(x+3)) digitValue) * ((str at:(x+4)) digitValue).
+	p>max ifTrue:[
+		max:=p.].
+	p:=1.
+	
+].
+Transcript show:  max  printString; cr. 
+
+|p sum|.
+p:=1.
+1 to: 1000 do: [:c|
+	1 to: c do:[:a|
+		a to: c do:[:b|
+			p:=a+c+b.
+			sum:=(a*a)+ (b*b).
+			sum=(c*c) ifTrue:[
+				
+			 	p=1000 ifTrue:[
+				Transcript show:  a  printString; cr. 	
+				Transcript show:  b  printString; cr. 				
+				Transcript show:  c  printString; cr. 
+				Transcript show:  (a*c*b)  printString; cr. 
+				]											
+			]
+		].
+	] .
+]. 
+
+|pArray temp pC count max maxindex|.
+pC := 1000000.
+max:=0.
+maxindex:=0.
+pArray := Array new:(pC).
+1 to: pC do:[:i|
+	temp:=i.
+	count:=1.
+	[temp>1]whileTrue:[
+		temp even ifTrue:[temp:=temp/2.]ifFalse:[temp:=temp*3+1.].
+		count:=count+1.
+		temp < pC ifTrue:[
+			(pArray at:temp)=nil ifFalse:[
+				pArray at:i put: ((pArray at:temp)+count-1).
+				max<(pArray at:i) ifTrue:[
+					max:=(pArray at:i).
+					maxindex :=i.
+				].
+				temp := 1.
+			].
+		].
+	].
+	(pArray at:i)=nil ifTrue:[
+		pArray at:i put:count.
+		max<count ifTrue:[
+					max:=count.
+					maxindex :=i.
+		].	
+	].
+].
+
+Transcript show: max printString;cr.	
+Transcript show: maxindex printString;cr.
+
+
+
+
+|index item i pArray  ac max count  k temp|.
+index := 2.
+i := 1.
+item := 4.
+count:=1.
+pArray := Array new: 10000.
+ac := Array new: 10000.
+pArray at: 1 put: 2.
+pArray at: 2 put: 3.
+max := 100000.
+[(pArray at: index) < max] whileTrue:[
+	item \\ (pArray at: i)=0 ifTrue:[
+		item := item + 1.
+		i := 1.	
+
+	]ifFalse:[
+		i := i + 1.
+
+	].	
+	i>index ifTrue:[
+		
+		index := index+1.
+		pArray at: index put:item.
+		item := item + 1.	
+		i := 1.	
+
+	].
+].
+
+i:=500.
+
+[count<500] whileTrue:[
+	count:=1.
+	i:=i+1.
+	item:= i * (i+1) / 2.
+	1 to: 2000 do:[:x|
+		ac at:x put:0.
+	].
+	k:=1.
+	[item>1] whileTrue:[
+		temp:= (pArray at:k).
+		item\\temp=0 ifTrue:[
+			item:=item/temp.
+			ac at:k put:((ac at:k)+1).
+		]ifFalse:[
+			k:=k+1.
+		].
+		item<(pArray at:k) ifTrue:[
+			item=1.	
+		]
+	].
+	1 to: 2000 do:[:x|
+		temp := (ac at:x).
+		temp>0 ifTrue:[
+			count := count *(temp + 1).		
+		].
+	].
+
+].
+Transcript show: (i*(i+1)/2) printString;cr.
+
+
+
+
+
+"problem=46"
+
+|index item i pArray max flag|.
+index := 2.
+i := 1.
+item := 4.
+flag :=1.
+pArray := Array new: 100000.
+pArray at: 1 put: 2.
+pArray at: 2 put: 3.
+max := 100000000 sqrtFloor.
+[(pArray at: index) < max] whileTrue:[
+	item \\ (pArray at: i)=0 ifTrue:[
+		item := item + 1.
+		i := 1.	
+
+	]ifFalse:[
+		i := i + 1.
+
+	].	
+	i>index ifTrue:[
+		
+		index := index+1.
+		pArray at: index put:item.
+		item := item + 1.	
+		i := 1.	
+
+	].
+].
+Transcript clear.
+9 to: 5800 by: 2 do:[:x|
+	i:=2.
+	flag:=1.
+	[((pArray at:i)<x) & (flag=1) & ((x isPrime) = false)] whileTrue:[
+		item := (x-(pArray at:i)) / 2.
+	 
+		item := (item sqrtFloor).
+		(item * item) = ((x-(pArray at: i))/2) ifTrue:[
+			flag:=0.
+		
+
+		].
+		i:= i+1.
+	].
+	((flag=1) & ((x isPrime) = false))  ifTrue:[Transcript show: x printString;cr.].		
+].
+
+"problem=39"
+|index item i pArray max|.
+index := 1.
+i := 1.
+item := 4.
+max:=0.
+pArray := Array new: 1000.
+1 to:1000 do:[:x| pArray at:x put: 0].
+1 to: 998 do:[:a|
+	1 to: a do:[:b|
+		1 to: b do:[:c|
+			item :=a+b+c.
+			(item <=1000) & (a*a = b*b+c*c) ifTrue:[
+				i := (pArray at:(a+b+c)) +1.
+				pArray at:(a+b+c) put: i.
+			].	
+		].
+	].	
+].
+
+1 to:1000 do:[:x |
+	max<(pArray at:x) ifTrue:[max:=pArray at:x].		
+].	
+Transcript show: max printString;cr.
+
+|index|.
+index:=''.
+1 to: 3000 do:[:num|
+	index:=index,num.
+	
+].
+
+index at:10000
+
+|num t1 t2 t3 n1 n2 n3 flag|.
+t1:=false.
+t2:=false.
+t3:=false.
+num:=40756.
+flag:=1.
+Transcript clear.
+[flag=1]whileTrue:[
+	n1:=8*num + 1.
+	n2:= 24*num+1.
+	n3:=8*num+1.
+	t1:= (n1 sqrtFloor = n1 sqrt).
+	t2:= (n2 sqrtFloor = n2 sqrt).
+	t3:= (n3 sqrtFloor = n3 sqrt).
+	t1 & t2 & t3 ifTrue:[
+		n1 := n1 sqrt.	
+		n2 := n2 sqrt.
+		n3 := n3 sqrt.
+			
+		((n1-1)\\2=0) & ((n2+1)\\6=0) & ((n3+1)\\4=0) ifTrue:[			
+		flag:=0.
+		Transcript show: num printString;cr.		
+		].
+	].
+	num:=num+1.
+	
+].
+
+"Problem 53"
+|count temp fArray index|.
+count:=0.
+temp:=0.
+index:=1.
+fArray := Array new:100.
+Transcript clear.
+1 to:100 do:[:i| 
+	fArray at:i put:(i factorial).
+].
+
+1 to: 100 do: [:n|
+	1 to:n do:[:r|
+		index:=n-r.
+		index=0 ifTrue:[
+			index:=1.
+		].
+		temp:= (fArray at:n)/(fArray at:r)/(fArray at:index).
+		temp > 1000000 ifTrue:[count:=count+1.].
+	].
+].
+Transcript show: count printString;cr.		 
+
+Transcript clear.		
+10 to:99 do:[:a|
+10 to:a do:[:b|
+		((a \\10=0) | (b\\10=0) ) ifFalse:[
+			(((a asString at:1) = (b asString at:1)) | ((a asString at:1) = (b asString at:2)) | ((a asString at:2) = (b asString at:1)) |( (a asString at:2) = (b asString at:2) ) ) &(((b / a) printString) size)= 5 ifTrue:[
+				Transcript show: b printString.
+				Transcript show: ' ' .
+				Transcript show: a printString.		
+				Transcript show: ' = ' .		
+				Transcript show: (b/a) printString;cr.
+			].	
+		].
+	].	
+].
+(49/98) * (19/95) *(26/65) *(16/64) (1/100)
+
+

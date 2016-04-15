@@ -1,0 +1,73 @@
+
+|x temp sum digit ts| .
+Transcript clear.
+x := Dictionary new.
+x at:0 put:0.
+x at: 1 put: 1.
+x at: 2 put: 32.
+x at: 3 put: 243.
+x at: 4 put: 1024.
+x at: 5 put: 3125.
+x at: 6 put: 7776.
+x at: 7 put: 16807.
+x at: 8 put: 32768.
+x at: 9 put: 59049.
+temp:=0.
+sum:=0.
+digit:=0.
+ts:=0.
+2 to:  531441 do:[:num|
+	temp:=num.
+	ts:=0.
+	[temp>0] whileTrue:[
+		digit:= temp \\ 10.
+	
+		temp:= (temp-digit)/10.
+		ts:=ts + (x at:digit).	
+	].
+	ts=num ifTrue:[
+		Transcript show: num printString;cr.			
+		sum := sum + ts.			
+	].
+].
+Transcript show: sum printString;cr.	
+ Transcript clear.
+0 to: 9 do:[:x|
+	Transcript show: (x factorial) printString;cr.	
+	]
+ nil
+
+
+|x temp sum digit ts| .
+Transcript clear.
+x := Dictionary new.
+x at:0 put:1.
+x at: 1 put: 1.
+x at: 2 put: 2.
+x at: 3 put: 6.
+x at: 4 put: 24.
+x at: 5 put: 120.
+x at: 6 put: 720.
+x at: 7 put: 5040.
+x at: 8 put: 40320.
+x at: 9 put: 362880.
+temp:=0.
+sum:=0.
+digit:=0.
+ts:=0.
+3 to:   3265920 do:[:num|
+	temp:=num.
+	ts:=0.
+	[temp>0] whileTrue:[
+		digit:= temp \\ 10.
+	
+		temp:= (temp-digit)/10.
+		ts:=ts + (x at:digit).	
+	].
+	ts=num ifTrue:[
+		Transcript show: num printString;cr.			
+		sum := sum + ts.			
+	].
+].
+Transcript show: sum printString;cr.	
+ 

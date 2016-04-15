@@ -1,0 +1,5 @@
+F:\workspace\编程\51nod\51nod\Base\bin\Debug\Base.exe
+F:\workspace\编程\51nod\51nod\Base\bin\Debug\Base.pdb
+F:\workspace\编程\51nod\51nod\Base\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\workspace\编程\51nod\51nod\Base\obj\x86\Debug\Base.exe
+F:\workspace\编程\51nod\51nod\Base\obj\x86\Debug\Base.pdb

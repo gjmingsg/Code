@@ -1,0 +1,122 @@
+
+|x sum temp|.
+Transcript clear.
+sum:=0.
+temp:=0.
+x := Dictionary new.
+x at:0 put:''.
+x at: 1 put: 'one'.
+x at: 2 put: 'two'.
+x at: 3 put: 'three'.
+x at: 4 put: 'four'.
+x at: 5 put: 'five'.
+x at: 6 put: 'six'.
+x at: 7 put: 'seven'.
+x at: 8 put: 'eight'.
+x at: 9 put: 'nine'.
+x at: 10 put: 'ten'.
+x at: 11 put: 'eleven'.
+x at: 12 put: 'twelve'.
+x at: 13 put: 'thirteen'.
+x at: 14 put: 'fourteen'.
+x at: 15 put: 'fifteen'.
+x at: 16 put: 'sixteen'.
+x at: 17 put: 'seventeen'.
+x at: 18 put: 'eighteen'.
+x at: 19 put: 'nineteen'.
+x at: 20 put: 'twenty'.
+x at: 30 put: 'thirty'.
+x at: 40 put: 'forty'.
+x at: 50 put: 'fifty'.
+x at: 60 put: 'sixty'.
+x at: 70 put: 'seventy'.
+x at: 80 put: 'eighty'.
+x at: 90 put: 'ninety'.
+x at: 100 put: 'onehundred'.
+x at: 1000 put: 'onethousand'.
+Transcript  clear.
+1 to: 1000 do:[:num|
+	Transcript show: num printString.
+	Transcript  show: ' '.
+	(x includesKey: num) ifTrue:[
+		sum:=sum+((x at:num) size).
+		Transcript show: (x at: num);cr.			
+	] ifFalse:[
+      	
+
+			(num > 100) & (num\\100 = 0) ifTrue:[
+				sum:=sum+((x at: (num/100.0 floor)) size) + 7.
+				Transcript show: (x at:( (num/100.0) floor)) .
+				Transcript show: ' hundred'; cr.
+			] ifFalse:[
+			     num >100 ifTrue:[
+					sum:=sum+((x at: (num/100.0) floor ) size) + 10.
+					Transcript show: (x at: (num/100) floor ) .
+					Transcript show: ' hundred and '.
+				].
+				temp:=num\\100.
+				temp>=90 ifTrue:[
+					sum:=sum+((x at:90) size) + ((x at:(temp-90)) size).	
+					Transcript show: (x at: 90).
+					Transcript show: '-'.
+					Transcript show: (x at: (temp-90));cr.
+				].
+				(temp>=80) & (temp<90) ifTrue:[
+					sum:=sum+((x at:80) size) + ((x at:(temp-80)) size).	
+					Transcript show: (x at: 80).
+					Transcript show: '-'.
+					Transcript show: (x at: (temp-80));cr.		
+				].
+				(temp>=70) & (temp<80) ifTrue:[
+					sum:=sum+((x at:70) size) + ((x at:(temp-70)) size).	
+					Transcript show: (x at: 70).
+					Transcript show: '-'.
+					Transcript show: (x at: (temp-70));cr.
+				].
+				(temp>=60) & (temp<70) ifTrue:[
+					sum:=sum+((x at:60) size) + ((x at:(temp-60)) size).	
+					Transcript show: (x at: 60).
+					Transcript show: '-'.
+					Transcript show: (x at: (temp-60));cr.
+				].
+				(temp>=50) & (temp<60) ifTrue:[
+					sum:=sum+((x at:50) size) + ((x at:(temp-50)) size).	
+					Transcript show: (x at: 50).
+					Transcript show: '-'.
+					Transcript show: (x at: (temp-50));cr.
+				].
+				(temp>=40) & (temp<50) ifTrue:[
+					sum:=sum+((x at:40) size) + ((x at:(temp-40)) size).	
+					Transcript show: (x at: 40).
+					Transcript show: '-'.
+					Transcript show: (x at: (temp-40));cr.
+				].
+				(temp>=30) & (temp<40) ifTrue:[
+					sum:=sum+((x at:30) size) + ((x at:(temp-30)) size).	
+					Transcript show: (x at: 30).
+					Transcript show: '-'.
+					Transcript show: (x at: (temp-30));cr.
+				].
+				(temp>=20) & (temp<30) ifTrue:[
+					sum:=sum+((x at:20) size) + ((x at:(temp-20)) size).	
+					Transcript show: (x at: 20).
+					Transcript show: '-'.
+					Transcript show: (x at: (temp-20));cr.
+
+				].
+			     (temp>=10) & (temp<20) ifTrue:[
+					sum:=sum+((x at:temp) size).	
+					Transcript show: (x at: temp);cr.
+
+				]. 
+  				(temp<10) ifTrue:[
+					sum:=sum+((x at:temp) size).	
+					Transcript show: (x at: temp);cr.
+				]. 	
+			].		
+		].
+	].		
+
+Transcript show: sum printString;cr.
+
+
